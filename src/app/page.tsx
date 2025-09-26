@@ -1,5 +1,3 @@
-// import { api } from '@/lib/api'
-
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { ModeToggle } from '@/components/common/mode-toggle'
@@ -29,11 +27,7 @@ const COPYRIGHT_TEXT = `© ${new Date().getFullYear()} NaaS Stack - Soheil Ghanb
 
 const MessageServer = async () => {
   const response = await client.hello()
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <pre>{JSON.stringify(response, null, 2)}</pre>
-    </Suspense>
-  )
+  return <pre>{JSON.stringify(response, null, 2)}</pre>
 }
 
 export default async () => {
@@ -51,7 +45,9 @@ export default async () => {
           Get Started
         </Link>
         <span className="text-foreground/85 text-xs">{COPYRIGHT_TEXT}</span>
-        <MessageServer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <MessageServer />
+        </Suspense>
       </section>
     </div>
   )
