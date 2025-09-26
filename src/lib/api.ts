@@ -1,8 +1,10 @@
-import { router } from '@/server/router'
 import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import type { RouterClient } from '@orpc/server'
+import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 import { createAuthClient } from 'better-auth/react'
+import type { router } from '@/server/router'
+
 // auth client
 export const { signIn, signUp, useSession } = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_URL,
@@ -21,3 +23,5 @@ const link = new RPCLink({
 })
 // orpc client
 export const client: RouterClient<typeof router> = createORPCClient(link)
+// react-query rpc
+export const orpc = createTanstackQueryUtils(client)

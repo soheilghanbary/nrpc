@@ -1,7 +1,5 @@
-import { drizzle } from 'drizzle-orm/postgres-js'
-import postgres from 'postgres'
-import * as schema from './schema'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { PrismaClient } from './generated/prisma/client'
 
-const conn = postgres(process.env.DATABASE_URL!)
-
-export const db = drizzle(conn, { schema })
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
+export const db = new PrismaClient({ adapter })
