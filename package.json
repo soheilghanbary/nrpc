@@ -10,8 +10,7 @@
     "db:push": "prisma db push",
     "db:std": "prisma studio",
     "lint": "biome check .",
-    "lint:fix": "biome check --fix --unsafe",
-    "postinstall": "prisma generate"
+    "lint:fix": "biome check --fix --unsafe"
   },
   "dependencies": {
     "@orpc/client": "^1.9.1",

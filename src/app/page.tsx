@@ -4,7 +4,6 @@ import { Suspense } from 'react'
 import { ModeToggle } from '@/components/common/mode-toggle'
 import { MessageClient } from '@/components/message-client'
 import { MessageServer } from '@/components/message-server'
-import { OAuthBtn } from '@/components/oauth-btn'
 import { buttonVariants } from '@/components/ui/button'
 import { siteConfig } from '@/config/site'
 
@@ -32,7 +31,6 @@ export default async () => {
           Get Started
         </Link>
         <span className="text-foreground/85 text-xs">{COPYRIGHT_TEXT}</span>
-        <OAuthBtn />
         {/* Client Component */}
         <MessageClient />
         {/* Server Component */}
