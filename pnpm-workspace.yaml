@@ -1,5 +1,7 @@
 onlyBuiltDependencies:
   - '@biomejs/biome'
+  - '@prisma/engines'
   - '@tailwindcss/oxide'
   - esbuild
+  - prisma
   - sharp

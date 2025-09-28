@@ -1,4 +1,4 @@
 export const siteConfig = {
-  title: 'NaaS Stack',
-  description: 'The modern NextJS Starter for All Developers',
+  title: 'nRPC',
+  description: 'A cutting-edge RPC stack built on modern technologies',
 }
