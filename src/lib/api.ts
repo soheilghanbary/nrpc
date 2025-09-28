@@ -5,23 +5,25 @@ import { createTanstackQueryUtils } from '@orpc/tanstack-query'
 import { createAuthClient } from 'better-auth/react'
 import type { router } from '@/server/router'
 
+declare global {
+  var $client: RouterClient<typeof router> | undefined
+}
+
 // auth client
 export const { signIn, signUp, useSession } = createAuthClient({
   baseURL: process.env.NEXT_PUBLIC_URL,
 })
 // orpc link
 const link = new RPCLink({
-  url: `${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/rpc`,
-  headers: async () => {
-    if (typeof window !== 'undefined') {
-      return {}
+  url: () => {
+    if (typeof window === 'undefined') {
+      throw new Error('RPCLink is not allowed on the server side.')
     }
-
-    const { headers } = await import('next/headers')
-    return await headers()
+    return `${window.location.origin}/rpc`
   },
 })
 // orpc client
-export const client: RouterClient<typeof router> = createORPCClient(link)
+export const client: RouterClient<typeof router> =
+  globalThis.$client ?? createORPCClient(link)
 // react-query rpc
 export const orpc = createTanstackQueryUtils(client)

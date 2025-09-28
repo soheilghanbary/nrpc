@@ -1,3 +1,4 @@
+import '../lib/orpc.server'
 import '@/styles/app.css'
 
 import type { Metadata } from 'next'
