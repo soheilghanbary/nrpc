@@ -1,4 +1,4 @@
-import { createORPCClient, onError } from '@orpc/client'
+import { createORPCClient } from '@orpc/client'
 import { RPCLink } from '@orpc/client/fetch'
 import type { RouterClient } from '@orpc/server'
 import { createTanstackQueryUtils } from '@orpc/tanstack-query'
@@ -10,18 +10,12 @@ declare global {
 
 // orpc link
 const link = new RPCLink({
-  url: `${process.env.NEXT_PUBLIC_URL}/api/rpc`,
-  fetch: (request, init) => {
-    return globalThis.fetch(request, {
-      ...init,
-      credentials: 'include',
-    })
+  url: () => {
+    if (typeof window === 'undefined') {
+      throw new Error('RPCLink is not allowed on the server side.')
+    }
+    return `${window.location.origin}/api/rpc`
   },
-  interceptors: [
-    onError((error) => {
-      console.error(error)
-    }),
-  ],
 })
 
 // orpc client

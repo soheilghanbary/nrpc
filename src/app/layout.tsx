@@ -1,5 +1,5 @@
+import '@/rpc/orpc.server'
 import '@/styles/app.css'
-
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import type { PropsWithChildren } from 'react'
