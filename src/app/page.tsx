@@ -14,7 +14,7 @@ const COPYRIGHT_TEXT = `© ${new Date().getFullYear()} NRPC Stack ${siteConfig.v
 export default () => {
   return (
     <div className="grid h-svh w-svw place-items-center">
-      <div className="grid animate-duration-700 animate-fade-up gap-4 sm:grid-cols-2">
+      <div className="grid animate-duration-700 animate-fade-up gap-4 p-4 sm:grid-cols-2">
         <section className="flex max-w-sm flex-col justify-evenly gap-3 rounded-xl border p-4 shadow-xs">
           <div className="flex items-center justify-center">
             <ModeToggle />
