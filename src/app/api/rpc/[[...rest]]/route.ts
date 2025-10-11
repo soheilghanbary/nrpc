@@ -1,7 +1,16 @@
 import { RPCHandler } from '@orpc/server/fetch'
 import { router } from '@/rpc/router'
+import { CORSPlugin } from '@orpc/server/plugins'
 
-export const handler = new RPCHandler(router)
+export const handler = new RPCHandler(router, {
+  plugins: [
+    new CORSPlugin({
+      origin: (origin, options) => origin,
+      allowMethods: ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'PATCH'],
+      // ...
+    }),
+  ],
+})
 
 async function handleRequest(request: Request) {
   const { response } = await handler.handle(request, {
